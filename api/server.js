@@ -15,14 +15,14 @@ server.use(cors())
 server.use('/api/auth', authRouter)
 server.use('/api/users', restricted, checkRole(user), userRouter)
 
-server.get('/' (req, res) => {
+server.get('/', (req, res) => {
   res.send('<h2>Node JWT Project</h2><h3>Michael Phelps</h3>')
 })
 
 module.exports = server
 
 
-const checkRole(role) {
+function checkRole(role) {
   return (req, res, next) => {
     if(req.decodedToken &&
        req.decodedToken.role &&
