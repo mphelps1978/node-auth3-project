@@ -18,7 +18,7 @@ module.exports = {
       },
     seeds: {
       directory: './data/seeds',
-    }    
+    }
   },
 
   staging: {
@@ -52,5 +52,4 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   }
-
 };
