@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 const {jwtSecret} = require ('../config/secrets.js')
 
-mosule.exports = (req, res, next) => {
+module.exports = (req, res, next) => {
   const {authorization} = req.headers;
 
   if (authorization) {

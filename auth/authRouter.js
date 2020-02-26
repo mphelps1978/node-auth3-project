@@ -1,19 +1,20 @@
+const express = require('express');
 const router = express.Router()
 
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const users = require('../users/usersModel.js')
-cosnt { jwtSecret } = require('../config/secrets.js')
+const { jwtSecret } = require('../config/secrets.js')
 
 router.post('/register', (req, res) => {
   let user = req.body
-  const hash = bcrypt.hash(user.password, 8)
+  const hash = bcrypt.hashSync(user.password, 8)
   user.password = hash
 
   users.add(user)
     .then(saved => {
-      res.status(201).json({created: `${saved}`})
+      res.status(201).json(saved)
     })
     .catch(err => {
       console.log(err.message)
@@ -31,7 +32,7 @@ router.post('/login', (req, res) => {
         const token = generateToken(user);
 
         res.status(200).json({
-          message:  `Welcome, ${user.username}`,
+          message:  `Welcome, ${username}`,
           token,
         })
       } else {
